@@ -5,4 +5,5 @@ out/
 target/
 .idea/
 .idea_modules/
+node_modules/
 
