@@ -18,9 +18,6 @@ class Blockchain {
     }
 
     minePendingTransactions(miningRewardAddress) {
-        let startTime = new Date().getTime();
-        let finishTime;
-
         console.log(`Mining please wait...`);
         this.pendingTransactions = [
             new Transaction('coin-system', miningRewardAddress, this.miningReward)
@@ -28,9 +25,6 @@ class Blockchain {
         let block = new Block(Date.now(), this.pendingTransactions);
         block.mineBlock(this.difficulty);
         this.chain.push(block);
-
-        finishTime = new Date().getTime();
-        console.log(`Successfully mined! in ${(finishTime - startTime) / 1000} segundos.`);
     }
 
     createTransaction(transaction) {

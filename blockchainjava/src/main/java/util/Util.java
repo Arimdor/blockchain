@@ -1,8 +1,11 @@
 package util;
 
 public class Util {
+    private static StringBuffer sb;
+    private static StringBuilder text;
+
     public static String toBytesHexString(byte[] bytes) {
-        StringBuffer sb = new StringBuffer(bytes.length * 2);
+        sb = new StringBuffer(64);
         for (byte aByte : bytes) {
             sb.append(toHex(aByte >> 4));
             sb.append(toHex(aByte));
@@ -19,7 +22,7 @@ public class Util {
     }
 
     public static String arrayToString(int[] array) {
-        StringBuilder text = new StringBuilder();
+        text = new StringBuilder();
         for (int item : array) {
             text.append(item);
         }

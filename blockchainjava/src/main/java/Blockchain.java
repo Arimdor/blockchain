@@ -14,7 +14,7 @@ public class Blockchain {
     }
 
     private static Block createGenesisBlock() {
-        return new Block(1520669653, new ArrayList<>(Arrays.asList(new Transaction("genesis","genesis",0.0))));
+        return new Block(1520669653, new ArrayList<>(Arrays.asList(new Transaction("genesis", "genesis", 0.0))));
     }
 
     public Block getLastBlock() {
@@ -22,17 +22,11 @@ public class Blockchain {
     }
 
     public void minePendingTransactions(String address) {
-        long startTime = new Date().getTime();
-        long finishTime;
-
-        System.out.println("Mining plase wait...");
+        System.out.println("Mining please wait...");
         pendingTransactions.add(new Transaction("system", address, MINING_REWARD));
         Block block = new Block(new Date().getTime(), pendingTransactions);
         block.mineBlock(DIFFICULTY);
         chain.add(block);
-
-        finishTime = new Date().getTime();
-        System.out.println("Successfully mined! in " + ((finishTime - startTime) / 1000f) + " segundos.");
     }
 
     public void createTransaction(Transaction transaction) {
@@ -68,6 +62,5 @@ public class Blockchain {
         }
         return true;
     }
-
 }
 
