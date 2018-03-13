@@ -13,9 +13,9 @@ public class Block {
     private List<Transaction> transactions;
     private String previousHash;
     private String hash;
-    private int nounce;
+    private long nounce;
     private MessageDigest sha256;
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
 
     Block(long timestamp, List<Transaction> transactions) {
@@ -35,13 +35,13 @@ public class Block {
     }
 
     public void mineBlock(int difficulty) {
-        long start = new Date().getTime();
-        long finish;
-        while (!hash.substring(0, difficulty).equals(Util.arrayToString(new int[difficulty]))) {
+        final long start = new Date().getTime();
+        final String expectedStartHash = Util.arrayToString(new int[difficulty]);
+        while (!(hash.substring(0, difficulty).equals(expectedStartHash))) {
             nounce++;
             hash = calculateHash();
         }
-        finish = new Date().getTime();
+        final long finish = new Date().getTime();
         System.out.println((nounce / ((finish - start) / 1000f)) + " h/s in " + (finish - start) / 1000f + " seg.");
         System.out.println("Block mined: " + hash);
     }
@@ -56,9 +56,5 @@ public class Block {
 
     public String getHash() {
         return hash;
-    }
-
-    public void setPreviousHash(String previousHash) {
-        this.previousHash = previousHash;
     }
 }

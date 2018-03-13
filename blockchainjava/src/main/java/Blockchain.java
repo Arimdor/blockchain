@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Blockchain {
-    private static final int DIFFICULTY = 5;
+    private static final int DIFFICULTY = 6;
     private static final Double MINING_REWARD = 12.5;
     private List<Block> chain = new ArrayList<>();
     private List<Transaction> pendingTransactions = new ArrayList<>();
